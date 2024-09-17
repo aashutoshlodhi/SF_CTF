@@ -1,0 +1,41 @@
+volatility3 -f memdumpc.mem windows.info.Info
+volatility3 -f memdumpc.mem windows.psscan.PsScan | grep -i "FTK"
+volatility3 -f memdumpc.mem windows.psscan.PsScan | grep -i "chrome"
+volatility3 -f memdumpc.mem windows.psscan.PsScan | grep -i "vbox"
+volatility3 -f memdumpc.mem windows.psscan.PsScan | grep -i "7zip"
+volatility3 -f memdumpc.mem windows.registry.hivelist.HiveList
+volatility3 -f memdumpc.mem windows.registry.printkey.PrintKey --offset 0x98209518
+volatility3 -f memdumpc.mem windows.registry.printkey.PrintKey --offset 0x98209518 --key "SAM"
+volatility3 -f memdumpc.mem windows.registry.printkey.PrintKey --offset 0x98209518 --key "SAM\Domains"
+volatility3 -f memdumpc.mem windows.registry.printkey.PrintKey --offset 0x98209518 --key "SAM\Domains\Account"
+volatility3 -f memdumpc.mem windows.registry.printkey.PrintKey --offset 0x98209518 --key "SAM\Domains\Account\Users"
+volatility3 -f memdumpc.mem windows.registry.printkey.PrintKey --offset 0x98209518 --key "SAM\Domains\Account\Users\Names"
+volatility3 -f memdumpc.mem windows.registry.hivelist.HiveList
+volatility3 -f memdumpc.mem windows.registry.printkey --offset 0x87c1c008 
+volatility3 -f memdumpc.mem windows.registry.printkey --offset 0x87c1c008 --key "ControlSet001"
+volatility3 -f memdumpc.mem -r pretty windows.registry.printkey.PrintKey --offset 0x87c1c008 --key "ControlSet001"
+volatility3 -f memdumpc.mem -r pretty windows.registry.printkey.PrintKey --offset 0x87c1c008 --key "ControlSet001\Control"
+volatility3 -f memdumpc.mem -r pretty windows.registry.printkey.PrintKey --offset 0x87c1c008 --key "ControlSet001\Control\ComputerName"
+volatility3 -f memdumpc.mem -r pretty windows.registry.printkey.PrintKey --offset 0x87c1c008 --key "ControlSet001\Control\ComputerName\ComputerName"
+
+
+volatility2 -f memdumpc.mem imageinfo
+volatility2 -f memdumpc.mem --profile=Win7SP0x86 hivelist
+volatility2 -f memdumpc.mem --profile=Win7SP0x86 printkey -o 0x9711d9c8
+volatility2 -f memdumpc.mem --profile=Win7SP0x86 printkey -o 0x9711d9c8 -K "Microsoft"
+volatility2 -f memdumpc.mem --profile=Win7SP0x86 printkey -o 0x9711d9c8 -K "Microsoft\Windows NT"
+volatility2 -f memdumpc.mem --profile=Win7SP0x86 printkey -o 0x9711d9c8 -K "Microsoft\Windows NT\CurrentVersion"
+volatility2 -f memdumpc.mem --profile=Win7SP0x86 printkey -o 0x9711d9c8 -K "Microsoft\Windows NT\CurrentVersion\Winlogon"
+volatility2 -f memdumpc.mem --profile=Win7SP0x86 hivelist
+volatility2 -f memdumpc.mem --profile=Win7SP0x86 printkey -o 0x87c459c8
+volatility2 -f memdumpc.mem --profile=Win7SP0x86 printkey -o 0x87c459c8 -K "Description
+volatility2 -f memdumpc.mem --profile=Win7SP0x86 printkey -o 0x87c459c8 -K "Description\System"
+volatility2 -f memdumpc.mem --profile=Win7SP0x86 printkey -o 0x87c459c8 -K "Description\System\CentralProcessor"
+volatility2 -f memdumpc.mem --profile=Win7SP0x86 printkey -o 0x87c459c8 -K "Description\System\CentralProcessor\0"
+volatility2 -f memdumpc.mem --profile=Win7SP0x86 consoles
+volatility2 -f memdumpc.mem --profile=Win7SP0x86 hivelist
+volatility2 -f memdumpc.mem --profile=Win7SP0x86 printkey -o 0x87c1c008
+volatility2 -f memdumpc.mem --profile=Win7SP0x86 printkey -o 0x87c1c008 -K "ControlSet001"
+volatility2 -f memdumpc.mem --profile=Win7SP0x86 printkey -o 0x87c1c008 -K "ControlSet001\Enum"
+volatility2 -f memdumpc.mem --profile=Win7SP0x86 printkey -o 0x87c1c008 -K "ControlSet001\Enum\USBSTOR"
+volatility2 -f memdumpc.mem --profile=Win7SP1x86 mftparser | grep -i "Downloads"
